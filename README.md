@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![QuizMania Logo](path/to/your/image.png)
+## QuizMania
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+QuizMania é uma API de quizzes de verdadeiro ou falso, desenvolvida com Laravel 11 e PHP 8.2. O sistema inclui autenticação de usuários, diferentes níveis de permissão (usuário comum e administrador), tentativas de resposta e classificação no leaderboard. Usuários podem se registrar, fazer login, participar de quizzes e visualizar suas pontuações. Administradores têm permissões adicionais para criar, atualizar e excluir quizzes e perguntas.
 
-## About Laravel
+### Tecnologias Utilizadas
+- Laravel 11
+- PHP 8.2
+- MySQL
+- Laravel Pint
+- Docker
+- Postman
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Funcionalidades
+- Registro, login e logout de usuários e perfil
+- Criação, atualização e exclusão de quizzes e perguntas (somente para administradores)
+- Participação em quizzes
+- Visualização de tentativas e pontuações
+- Leaderboard com pontuações dos usuários
+- 
+### Documentação da API
+A documentação da API está disponível tanto no link quanto em arquivo JSON para importação no Postman.:
+- **Postman:** https://www.postman.com/tearing5/quizmania/folder/eqw3ydz/quizmania?action=share&source=copy-link&creator=2630047&ctx=documentation e no arquivo `\docs\postman\QuizMania.postman_collection.json`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Como Rodar o Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Clone o repositório:**
+   ```sh
+   git clone https://github.com/danillo523/QuizMania.git
+   cd QuizMania
+   ```
 
-## Learning Laravel
+2. **Configure o arquivo `.env`:**
+   Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente, especialmente as configurações do banco de dados.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Instale as dependências:**
+   ```sh
+   composer install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. **Gere a chave da aplicação:**
+   ```sh
+   php artisan key:generate
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. **Construa e inicie os containers Docker:**
+   ```sh
+   docker-compose up -d
+   ```
 
-## Laravel Sponsors
+6. **Acesse a aplicação:**
+   A aplicação estará disponível em `http://localhost:8000/api` ao rodar o docker container.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Estrutura de Rotas
+- **Autenticação:**
+    - `POST /register` - Registro de usuário
+    - `POST /login` - Login de usuário
+    - `POST /logout` - Logout de usuário (requer autenticação)
+    - `GET /me` - Informações do usuário autenticado
 
-### Premium Partners
+- **Quizzes (Admin):**
+    - `POST /quizzes` - Criar quiz
+    - `PUT /quizzes/{quiz}` - Atualizar quiz
+    - `DELETE /quizzes/{quiz}` - Deletar quiz
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **Perguntas (Admin):**
+    - `POST /quizzes/{quiz}/questions` - Criar pergunta
+    - `PUT /quizzes/{quiz}/questions/{question}` - Atualizar pergunta
+    - `DELETE /quizzes/{quiz}/questions/{question}` - Deletar pergunta
 
-## Contributing
+- **Quizzes (Usuário):**
+    - `GET /quizzes` - Listar quizzes
+    - `GET /quizzes/{quiz}` - Detalhes de um quiz específico 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Tentativas:**
+    - `POST /quizzes/{quiz}/start` - Iniciar tentativa
+    - `POST /attempts/answer` - Responder pergunta
+    - `GET /attempts/{attempt}` - Detalhes da tentativa
+    - `GET /attempts` - Listar tentativas do usuário
 
-## Code of Conduct
+- **Leaderboard:**
+    - `GET /leaderboard` - Listar leaderboard
+    - `GET /leaderboard/{order}` - Listar leaderboard ordenado
+    - `GET /leaderboard/user/{user}` - Pontuação do usuário
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Docker
+O projeto utiliza Docker para facilitar a configuração e execução do ambiente de desenvolvimento. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.           
+**ATENÇÃO** : Ao iniciar os containers O usuário **admin** no banco de dados MySQL é criado automaticamente com a senha **admin**, a migration também é executada automaticamente para criar as tabelas necessárias.
 
-## Security Vulnerabilities
+Para iniciar os containers, execute:
+```sh
+docker-compose up -d
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Para parar os containers, execute:
+```sh
+docker-compose down
+```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
