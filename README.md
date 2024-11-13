@@ -97,3 +97,8 @@ Para parar os containers, execute:
 docker-compose down
 ```
 
+### Vídeo Demonstrativo
+
+https://github.com/user-attachments/assets/ee50b655-3b2a-42c8-851b-a1b289904088
+
+
