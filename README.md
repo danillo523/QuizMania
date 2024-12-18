@@ -17,7 +17,7 @@ QuizMania é uma API de quizzes de verdadeiro ou falso, desenvolvida com Laravel
 - Participação em quizzes
 - Visualização de tentativas e pontuações
 - Leaderboard com pontuações dos usuários
-- 
+
 ### Documentação da API
 A documentação da API está disponível tanto no link quanto em arquivo JSON para importação no Postman.:
 - **Postman:** https://www.postman.com/tearing5/quizmania/folder/eqw3ydz/quizmania?action=share&source=copy-link&creator=2630047&ctx=documentation e no arquivo `\docs\postman\QuizMania.postman_collection.json`
