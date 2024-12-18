@@ -85,7 +85,7 @@ A documentação da API está disponível tanto no link quanto em arquivo JSON p
 
 ### Docker
 O projeto utiliza Docker para facilitar a configuração e execução do ambiente de desenvolvimento. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.           
-**ATENÇÃO** : Ao iniciar os containers O usuário **admin** no banco de dados MySQL é criado automaticamente com a senha **admin**, a migration também é executada automaticamente para criar as tabelas necessárias.
+**ATENÇÃO** : Ao iniciar os containers O usuário **admin** no banco de dados MySQL é criado automaticamente com a senha **password**, a migration também é executada automaticamente para criar as tabelas necessárias.
 
 Para iniciar os containers, execute:
 ```sh
