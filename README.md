@@ -1,5 +1,6 @@
-![QuizMania Logo](path/to/your/image.png)
-## QuizMania
+
+## ![logo-quizmania](https://github.com/user-attachments/assets/9477e306-9fa9-4e71-a566-1c0d7be8f9af)
+QuizMania
 
 QuizMania é uma API de quizzes de verdadeiro ou falso, desenvolvida com Laravel 11 e PHP 8.2. O sistema inclui autenticação de usuários, diferentes níveis de permissão (usuário comum e administrador), tentativas de resposta e classificação no leaderboard. Usuários podem se registrar, fazer login, participar de quizzes e visualizar suas pontuações. Administradores têm permissões adicionais para criar, atualizar e excluir quizzes e perguntas.
 
